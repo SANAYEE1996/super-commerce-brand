@@ -45,7 +45,8 @@ public class BrandController {
 
     @Transactional
     @PostMapping(value = "/register", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseDto registerBrand(@RequestPart BrandRegisterDto request, @RequestPart MultipartFile img){
+    public ResponseDto registerBrand(@RequestPart(name = "BrandRegisterInfo") BrandRegisterDto request
+                                    ,@RequestPart(value = "brandImage", required = false) MultipartFile img){
 
         String fileName = img.getOriginalFilename() +"_"+ System.currentTimeMillis();
 
